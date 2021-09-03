@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container-fluid">
+        <span class="navbar-brand" href="#">MyfarmS&nbsp;<i style="color: aliceblue;" class="fas fa-tractor"></i></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/products">All Products</a>
+                <a class="nav-link" href="/farms">All farms</a>
+                <a class="nav-link" href="/farms/new">Add farm</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Filter Product by category
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/products/filter/fruit">Fruits</a>
+                            <a class="dropdown-item" href="/products/filter/vegetable">Vegetables</a>
+                            <a class="dropdown-item" href="/products/filter/dairy">Dairy</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="margin-left: auto; margin-right: 1rem;" class="navbar-nav">
+                <%if(!currentUser){%>
+                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/signup">Signup</a>
+                    <% }else{ %>
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropstart">
+                                <a style="background-color: rgba(128, 128, 128, 0.281);border-radius: 0.5rem; "
+                                    class="nav-link dropdown-toggle px-3" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="">
+                                        <%=currentUser.username %>
+                                    </a>
+                                    <a class="dropdown-item" href="/me">View profile</a>
+                                    <a class="dropdown-item" href="/farms/me">My farm</a>
+                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item" href="/logout">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <% } %>
+            </div>
+
+        </div>
+    </div>
+
+</nav>

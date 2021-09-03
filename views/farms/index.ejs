@@ -1,0 +1,22 @@
+<%- layout('/layouts/boilerplate') %>
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2 col-10 offset-1">
+            <div class="list-group">
+                <button class="list-group-item list-group-item-action active">
+                    ALL FARMS</button>
+                <% for(let farm of farms) {%>
+                    <a href="/farms/<%=farm._id %> "
+                        class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="text-uppercase">
+                                <%=farm.name %>
+                            </div>
+                        </div>
+                        <span class="ml-auto">Owner :
+                            <%=farm.owner.username %>
+                        </span>
+                    </a>
+                    <% } %>
+            </div>
+        </div>
+    </div>

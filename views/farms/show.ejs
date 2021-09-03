@@ -1,0 +1,126 @@
+<%- layout('/layouts/boilerplate') %>
+
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2 col-10 offset-1">
+            <div class="card text-center mb-5">
+                <div class="card-header">
+                    <h4 class="text-uppercase"><b>
+                            <%=farm.name %>
+                        </b></h4>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th scope="row">City</th>
+                                <td></td>
+                                <td>
+                                    <%=farm.city %>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td></td>
+                                <td>
+                                    <%=farm.email %>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Farm owner</th>
+                                <td></td>
+                                <td>
+                                    <%=farm.owner.username %>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer py-3 ml-auto">
+                    <a href="/farms/<%=farm._id%>/products/new " class="card-link btn btn-success btn-sm">Add a
+                        product</a>
+                    <a href="/farms/<%=farm._id%>/edit" class="card-link btn btn-secondary btn-sm">Update</a>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">Delete</button>
+
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Farm</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Are you sure you want to delete Your farm, All the products belonging to
+                            this farm will also be deleted</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">No</button>
+                            <form class="d-inline" action="/farms/<%=farm._id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-5">
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Fruits
+                </button>
+                <% for(let product of farm.products){ %>
+                    <% if(product.category==='fruit' ){ %>
+                        <a href="/products/<%=product._id %> "
+                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <%= product.name %>
+                            </div>
+                            <%= product.price %> $
+                        </a>
+                        <%} } %>
+            </div>
+        </div>
+        <div class="col-md-4 mb-5">
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Vegetables
+                </button>
+                <% for(let product of farm.products){ %>
+                    <% if(product.category==='vegetable' ){ %>
+                        <a href="/products/<%=product._id %> "
+                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <%= product.name %>
+                            </div>
+                            <%= product.price %> $
+                        </a>
+                        <%} } %>
+            </div>
+        </div>
+        <div class="col-md-4 mb-5">
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Dairy
+                </button>
+                <% for(let product of farm.products){ %>
+                    <% if(product.category==='dairy' ){ %>
+                        <a href="/products/<%=product._id %> "
+                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <%= product.name %>
+                            </div>
+                            <%= product.price %> $
+                        </a>
+                        <%} } %>
+            </div>
+        </div>
+
+    </div>

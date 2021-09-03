@@ -1,0 +1,93 @@
+<%- layout('/layouts/boilerplate') %>
+
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card text-center mb-5">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        <%=farm.name.toUpperCase() %>
+                    </h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">City : <%=farm.city %>
+                    </li>
+                    <li class="list-group-item">Owner : <%=farm.owner.username %>
+                    </li>
+                    <li class="list-group-item">Reach us At: <%=farm.email %>
+                    </li>
+                </ul>
+                <div class="card-footer ml-auto">
+                    <a href="/farms/<%=farm._id%>/products/new " class="card-link btn btn-success btn-sm">Add a
+                        product</a>
+                    <a href="/farms/<%=farm._id%>/edit" class="card-link btn btn-success btn-sm">Update</a>
+                    <form class="d-inline" action="/farms/<%=farm._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <ol class="list-group list-group-numbered">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Fruits
+                </button>
+                <% for(let product of farm.products){ %>
+                    <% if(product.category==='fruit' ){ %>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">
+                                    <%= product.name %>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary rounded-pill">
+                                <%= product.price %> $
+                            </span>
+                        </li>
+                        <%} } %>
+            </ol>
+        </div>
+        <div class="col-4">
+            <ol class="list-group list-group-numbered">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Vegetables
+                </button>
+                <% for(let product of farm.products){ %>
+                    <% if(product.category==='vegetable' ){ %>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">
+                                    <%= product.name %>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary rounded-pill">
+                                <%= product.price %> $
+                            </span>
+                        </li>
+                        <%} } %>
+            </ol>
+        </div>
+        <div class="col-4">
+            <ol class="list-group list-group-numbered">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Dairy
+                </button>
+                <% for(let product of farm.products){ %>
+                    <% if(product.category==='dairy' ){ %>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">
+                                    <%= product.name %>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary rounded-pill">
+                                <%= product.price %> $
+                            </span>
+                        </li>
+                        <%} } %>
+            </ol>
+        </div>
+
+    </div>

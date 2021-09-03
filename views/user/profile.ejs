@@ -1,0 +1,58 @@
+<%- layout('/layouts/boilerplate') %>
+
+
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2 col-10 offset-1">
+
+
+
+            <div class="card">
+                <div class="card-body">
+
+                    <h5 class="h3 text-center card-title">User Profile</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Username</th>
+                                <td></td>
+                                <td>
+                                    <%=currentUser.username %>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td></td>
+                                <td>
+                                    <%=currentUser.email %>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <% if(farm){ %>
+                                <tr>
+                                    <th scope="row">Farm name</th>
+                                    <td></td>
+                                    <td>
+                                        <%=farm.name %>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <ul class="list-group list-group-flush">
+                    <a class="list-group-item">An item</a>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                </ul> -->
+                <div class="card-body text-center">
+                    <a href="/logout" class="btn btn-danger card-link">Logout</a>
+                    <!-- <a href="/signup" class="btn btn-dark card-link">Create Another account</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
