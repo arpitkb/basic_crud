@@ -6,17 +6,24 @@ const router = express.Router({ mergeParams: true })
 const Farm = require('../models/farm')
 
 const { isLoggedin } = require('../middleware.js')
+const AppError = require('../utils/AppError')
 
 router.post('/signup', wrapAsync(async (req, res, next) => {
     try {
         const { email, username, password } = req.body
-        const user = new User({ username, email })
-        const registeredUser = await User.register(user, password);
-        req.login(registeredUser, err => {
-            if (err) return next(err)
-            req.flash('success', 'Welcome to Farms')
-            res.redirect('/farms');
-        })
+        if (password.length < 7) {
+            throw new AppError('Password not strong enough', 400)
+        }
+        else {
+            const user = new User({ username, email })
+            const registeredUser = await User.register(user, password);
+            req.login(registeredUser, err => {
+                if (err) return next(err)
+                req.flash('success', 'Welcome to farmS')
+                res.redirect('/');
+            })
+        }
+
     }
     catch (e) {
         req.flash('error', e.message)

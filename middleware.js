@@ -7,7 +7,8 @@ module.exports.validateFarm = (req, res, next) => {
     const { error } = farmSchema.validate(req.body)
     if (error) {
         const mssg = error.details.map(el => el.message).join(',')
-        throw new AppError(mssg, 400)
+        req.flash('error', mssg)
+        return res.redirect('/farms/new')
     }
     else next()
 }
@@ -56,5 +57,6 @@ module.exports.isProductOwner = async (req, res, next) => {
     }
     else next()
 }
+
 
 

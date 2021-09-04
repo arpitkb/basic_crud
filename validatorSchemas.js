@@ -2,7 +2,7 @@ const Joi = require('joi')
 
 module.exports.farmSchema = Joi.object({
     farm: Joi.object({
-        name: Joi.string().required(),
+        name: Joi.string().required().max(15),
         city: Joi.string().required(),
         email: Joi.string().required(),
     }).required()
